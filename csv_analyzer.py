@@ -289,9 +289,9 @@ with tab4:
             y_col  = cy.selectbox("Y axis", num_cols, index=min(1, len(num_cols)-1))
             hue_col = st.selectbox("Colour by (optional)", ["None"] + cat_cols + num_cols)
             sample_n = st.slider("Max points", 100, min(5000, len(df)), min(1000, len(df)))
-            subset = df[[x_col, y_col] + ([hue_col] if hue_col != "None" else [])].dropna().sample(min(sample_n, len(df)), random_state=42)
-
-            fig, ax = plt.subplots(figsize=(8, 5))
+            plot_df = df[[x_col, y_col] + ([hue_col] if hue_col != "None" else [])].dropna()
+            subset = plot_df.sample(min(sample_n, len(plot_df)), random_state=42)
+            
             if hue_col == "None":
                 ax.scatter(subset[x_col], subset[y_col], color=ACCENT, alpha=0.5, s=20, edgecolors="none")
             else:
