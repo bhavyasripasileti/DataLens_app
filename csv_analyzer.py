@@ -8,7 +8,7 @@ from io import StringIO
 import warnings
 warnings.filterwarnings("ignore")
 
-# ── Page config ──────────────────────────────────────────────────────────────
+# ── Page config 
 st.set_page_config(
     page_title="DataLens · CSV Analyzer",
     page_icon="🔬",
@@ -16,7 +16,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# ── Custom CSS 
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -87,7 +87,7 @@ hr { border-color: #1f2330 !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Matplotlib / Seaborn dark theme ──────────────────────────────────────────
+# ── Matplotlib / Seaborn dark theme 
 plt.rcParams.update({
     "figure.facecolor":  "#13161e",
     "axes.facecolor":    "#13161e",
@@ -108,7 +108,7 @@ ACCENT2  = "#7eb8f7"
 ACCENT3  = "#f0a8d0"
 PAL      = [ACCENT, ACCENT2, ACCENT3, "#f7c97e", "#b8a8f0", "#f07e7e"]
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
+# ── Helpers 
 @st.cache_data
 def load_data(file) -> pd.DataFrame:
     return pd.read_csv(file)
@@ -118,7 +118,7 @@ def missing_summary(df: pd.DataFrame) -> pd.DataFrame:
     pct   = (miss / len(df) * 100).round(2)
     return pd.DataFrame({"Missing Count": miss, "Missing %": pct, "Dtype": df.dtypes})[miss > 0].sort_values("Missing %", ascending=False)
 
-# ── Sidebar ──────────────────────────────────────────────────────────────────
+# ── Sidebar 
 with st.sidebar:
     st.markdown("## 🔬 DataLens")
     st.markdown("<span style='color:#7a7f94;font-size:0.78rem;'>CSV Explorer & Visualizer</span>", unsafe_allow_html=True)
@@ -127,7 +127,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("<span style='color:#7a7f94;font-size:0.75rem;'>Supports UTF-8 encoded CSVs up to 200 MB</span>", unsafe_allow_html=True)
 
-# ── Main ─────────────────────────────────────────────────────────────────────
+# ── Main 
 st.title("DataLens")
 st.markdown("<p style='color:#7a7f94;margin-top:-12px;'>Upload a CSV to explore, diagnose, and visualise your dataset instantly.</p>", unsafe_allow_html=True)
 
@@ -144,7 +144,7 @@ df = load_data(uploaded)
 num_cols = df.select_dtypes(include=np.number).columns.tolist()
 cat_cols = df.select_dtypes(include=["object", "category"]).columns.tolist()
 
-# ── KPI row ──────────────────────────────────────────────────────────────────
+# ── KPI row 
 c1, c2, c3, c4, c5 = st.columns(5)
 c1.metric("Rows",          f"{df.shape[0]:,}")
 c2.metric("Columns",       f"{df.shape[1]:,}")
@@ -155,10 +155,10 @@ c5.metric("Missing cells", f"{miss_total:,}", delta=f"{miss_total/df.size*100:.1
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ── Tabs ─────────────────────────────────────────────────────────────────────
+# ── Tabs
 tab1, tab2, tab3, tab4 = st.tabs(["📋  Preview", "🩺  Missing Values", "🔗  Correlation", "📊  Visualisations"])
 
-# ─── Tab 1 · Preview ────────────────────────────────────────────────────────
+# ─── Tab 1 · Preview
 with tab1:
     st.markdown("## Dataset Preview")
     n_rows = st.slider("Rows to display", 5, min(200, len(df)), 10, key="preview_rows")
@@ -173,7 +173,7 @@ with tab1:
     with st.expander("📈 Descriptive Statistics"):
         st.dataframe(df.describe(include="all").T, use_container_width=True)
 
-# ─── Tab 2 · Missing Values ─────────────────────────────────────────────────
+# ─── Tab 2 · Missing Values 
 with tab2:
     st.markdown("## Missing Value Analysis")
     ms = missing_summary(df)
@@ -210,7 +210,7 @@ with tab2:
         fig2.tight_layout()
         st.pyplot(fig2, use_container_width=True)
 
-# ─── Tab 3 · Correlation ─────────────────────────────────────────────────────
+# ─── Tab 3 · Correlation 
 with tab3:
     st.markdown("## Correlation Heatmap")
     if len(num_cols) < 2:
@@ -246,7 +246,7 @@ with tab3:
             with st.expander("🔍 Top correlated pairs"):
                 st.dataframe(pairs.head(15).style.background_gradient(subset=["Correlation"], cmap="RdYlGn"), use_container_width=True)
 
-# ─── Tab 4 · Visualisations ──────────────────────────────────────────────────
+# ─── Tab 4 · Visualisations 
 with tab4:
     st.markdown("## Visualisations")
     vtype = st.selectbox("Chart type", [
@@ -254,7 +254,7 @@ with tab4:
         "Bar Chart (categorical)", "Line Chart", "Pair Plot"
     ])
 
-    # ── Histogram ──
+    # ── Histogram
     if vtype == "Histogram":
         col = st.selectbox("Numeric column", num_cols)
         bins = st.slider("Bins", 10, 100, 30)
@@ -265,7 +265,7 @@ with tab4:
         ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, _: f"{int(x):,}"))
         fig.tight_layout(); st.pyplot(fig, use_container_width=True)
 
-    # ── Box Plot ──
+    # ── Box Plot 
     elif vtype == "Box Plot":
         cols_sel = st.multiselect("Numeric columns", num_cols, default=num_cols[:min(6, len(num_cols))])
         if cols_sel:
@@ -279,7 +279,7 @@ with tab4:
             ax.set_title("Box plots"); plt.xticks(rotation=30, ha="right")
             fig.tight_layout(); st.pyplot(fig, use_container_width=True)
 
-    # ── Scatter Plot ──
+    # ── Scatter Plot 
     elif vtype == "Scatter Plot":
         if len(num_cols) < 2:
             st.warning("Need at least 2 numeric columns.")
@@ -305,7 +305,7 @@ with tab4:
             ax.set_title(f"{x_col}  vs  {y_col}")
             fig.tight_layout(); st.pyplot(fig, use_container_width=True)
 
-    # ── Bar Chart ──
+    # ── Bar Chart 
     elif vtype == "Bar Chart (categorical)":
         if not cat_cols:
             st.warning("No categorical columns found.")
@@ -322,7 +322,7 @@ with tab4:
                         f"{int(bar.get_height()):,}", ha="center", fontsize=7, color="#c9ccd6")
             fig.tight_layout(); st.pyplot(fig, use_container_width=True)
 
-    # ── Line Chart ──
+    # ── Line Chart 
     elif vtype == "Line Chart":
         if not num_cols:
             st.warning("No numeric columns.")
@@ -340,7 +340,7 @@ with tab4:
                 ax.set_title("Line chart")
                 fig.tight_layout(); st.pyplot(fig, use_container_width=True)
 
-    # ── Pair Plot ──
+    # ── Pair Plot 
     elif vtype == "Pair Plot":
         if len(num_cols) < 2:
             st.warning("Need at least 2 numeric columns.")
