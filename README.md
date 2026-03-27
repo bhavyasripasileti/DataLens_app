@@ -1,114 +1,164 @@
-# 🔬 DataLens - CSV Analyzer
+<div align="center">
 
-A sleek, dark-themed interactive data analysis app built with Streamlit. Upload any CSV file and instantly explore, diagnose, and visualize your dataset.
+# 🔬 DataLens — Smart CSV Analyzer Dashboard
+
+### Explore, clean, and visualize your data — instantly.
+
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge\&logo=python\&logoColor=white)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge\&logo=streamlit\&logoColor=white)](https://streamlit.io)
+[![Pandas](https://img.shields.io/badge/Pandas-Data--Analysis-150458?style=for-the-badge\&logo=pandas\&logoColor=white)](https://pandas.pydata.org)
+[![NumPy](https://img.shields.io/badge/NumPy-Numerical-013243?style=for-the-badge\&logo=numpy\&logoColor=white)](https://numpy.org)
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-blue?style=for-the-badge)](https://matplotlib.org)
+[![Seaborn](https://img.shields.io/badge/Seaborn-Statistical--Viz-green?style=for-the-badge)](https://seaborn.pydata.org)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+
+<br/>
+
+> A powerful and interactive **data analysis dashboard** that allows users to upload any CSV file and instantly explore, diagnose, and visualize their dataset — all in a clean Streamlit interface.
+
+<br/>
+
+**[🖥️ Live App link](#-demo) · [📊 Features](#-key-features) · [📦 Setup](#-installation) · [🧪 Usage](#-how-to-use)**
+
+</div>
 
 ---
 
-## 🚀 Features
+## 🌐 Overview
 
-- **📋 Dataset Preview** — Browse your data with adjustable row display, column info, and descriptive statistics
-- **🩺 Missing Value Analysis** — Detect missing data with summary tables, bar charts, and a missingness heatmap
-- **🔗 Correlation Heatmap** — Pearson, Spearman, and Kendall correlation matrices with top correlated pairs
-- **📊 Visualisations** — 6 chart types: Histogram, Box Plot, Scatter Plot, Bar Chart, Line Chart, and Pair Plot
+Analyzing datasets manually can be time-consuming and inefficient, especially during early-stage exploration.
 
----
-
-## 🖥️ Demo
-
-![DataLens Screenshot](screenshot.png)
+**DataLens** simplifies this process by providing an **all-in-one interactive dashboard** to quickly understand your data, detect issues, and generate meaningful visual insights — without writing extensive code.
 
 ---
 
-## 🛠️ Installation
+## ✨ Key Features
 
-**1. Clone the repository**
+| Feature                       | Description                                                         |
+| ----------------------------- | ------------------------------------------------------------------- |
+| 📋 Dataset Preview            | View raw data, column info, and descriptive statistics              |
+| 🩺 Missing Value Analysis     | Identify null values with summaries and heatmaps                    |
+| 🔗 Correlation Analysis       | Pearson, Spearman, and Kendall correlation matrices                 |
+| 📊 Interactive Visualizations | Histogram, Box Plot, Scatter Plot, Bar Chart, Line Chart, Pair Plot |
+| 🎯 Clean UI                   | Dark-themed, intuitive Streamlit interface                          |
+
+
+
+## 📂 Project Structure
+
+```
+DataLens-app/
+│
+├── csv_analyzer.py       # Streamlit app (UI + logic)
+├── requirements.txt      # Dependencies
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🛠️ Tech Stack
+
+| Category        | Technology          |
+| --------------- | ------------------- |
+| Language        | Python 3.11+        |
+| Framework       | Streamlit           |
+| Data Processing | Pandas, NumPy       |
+| Visualization   | Matplotlib, Seaborn |
+
+---
+
+## 🚀 Installation
+
+### 1️⃣ Clone the Repository
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/DataLens-app.git
 cd DataLens-app
 ```
 
-**2. Create a virtual environment (Python 3.11 recommended)**
+### 2️⃣ Create Virtual Environment
+
 ```bash
 py -3.11 -m venv venv
 .\venv\Scripts\activate
 ```
 
-**3. Install dependencies**
+### 3️⃣ Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-**4. Run the app**
+### 4️⃣ Run the Application
+
 ```bash
 streamlit run csv_analyzer.py
 ```
 
----
+Open in browser:
 
-## 📦 Requirements
-
-- Python 3.11+
-- Streamlit 1.43.2
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-
----
-
-## 📁 Project Structure
 ```
-DataLens-app/
-│
-├── csv_analyzer.py       # Main Streamlit app
-├── requirements.txt      # Python dependencies
-├── .gitignore            # Git ignore rules
-└── README.md             # Project documentation
+http://localhost:8501
 ```
 
 ---
 
 ## 🧪 How to Use
 
-1. Launch the app with `streamlit run csv_analyzer.py`
-2. Upload any `.csv` file using the sidebar
-3. Navigate through the tabs:
-   - **Preview** — inspect your raw data
-   - **Missing Values** — identify data quality issues
-   - **Correlation** — find relationships between numeric columns
-   - **Visualisations** — generate interactive charts
+1. Launch the app using Streamlit
+2. Upload a `.csv` file via the sidebar
+3. Navigate through analysis tabs:
+
+   * **Preview** → Inspect dataset structure
+   * **Missing Values** → Identify data quality issues
+   * **Correlation** → Discover relationships between variables
+   * **Visualizations** → Generate charts interactively
+4. Gain quick insights without writing code
 
 ---
 
-## 🎨 Tech Stack
+## 💼 Project Highlights
 
-| Tool | Purpose |
-|------|---------|
-| Streamlit | Web app framework |
-| Pandas | Data manipulation |
-| Matplotlib | Chart rendering |
-| Seaborn | Statistical visualizations |
-| NumPy | Numerical computing |
+* Built an **interactive data analysis tool** for quick EDA
+* Implemented **data quality diagnostics (missing values, correlations)**
+* Designed **multiple visualization modules**
+* Developed a **user-friendly Streamlit dashboard**
+* Enables **no-code data exploration for beginners**
 
 ---
 
-## 📄 License
+## 🔮 Future Improvements
 
-This project is open source and available under the [MIT License](LICENSE).
+* Upload Excel & JSON support
+* Download processed dataset
+* Advanced filtering & query system
+* Dashboard export (PDF/PNG)
+* Integration with ML model insights
+
+---
+
+## 📜 License
+
+MIT License — free to use and modify.
 
 ---
 
-## 🙌 Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
-
----
-## 👨‍💻 Author
+## 👤 Author
 
 **Bhavya Sri Pasileti**
 
-BTech Student | Data Science & AI Enthusiast  
-Passionate about building **Passionate about Turning Data into Insights**.
+> BTech Student | Data Science & AI Enthusiast
+> Passionate about turning raw data into meaningful insights.
+
+[LinkedIn](https://www.linkedin.com/in/bhavya-sri-pasileti-16565a2a1)
 
 ---
-Made with ❤️ using Streamlit
+
+<div align="center">
+
+⭐ If you found this project useful, consider giving it a star!
+
+*Built with ❤️ by Bhavya Sri Pasileti*
+
+</div>
