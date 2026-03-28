@@ -18,12 +18,14 @@
 
 <br/>
 
-**[🖥️ Live App link](#-demo) · [📊 Features](#-key-features) · [📦 Setup](#-installation) · [🧪 Usage](#-how-to-use)**
+** [📊 Features](#-key-features) · [📦 Setup](#-installation) · [🧪 Usage](#-how-to-use)**
 
 </div>
 
 ---
-
+## 🖥️ Live App
+> [Click here for the app Link>>](https://datalensapp-fesmztgrmcxd26dyiuktd4.streamlit.app)
+---
 ## 🌐 Overview
 
 Analyzing datasets manually can be time-consuming and inefficient, especially during early-stage exploration.
